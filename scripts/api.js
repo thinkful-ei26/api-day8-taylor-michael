@@ -6,9 +6,19 @@ const api = (function () {
 
     const getItems = function (callback) {
         
-        callback('api module works!');
-        
+        $.getJSON(`${BASE_URL}/items`, callback);
     };
+
+    const createItems = function (name) {
+        const newItem = JSON.stringify(name);
+        $.ajax({
+            url : `${BASE_URL}/items`,
+            method: 'POST',
+            contentType: 'application/json',
+            data: newItem,
+            success 
+    })
+    }
 
     return{getItems,}
 

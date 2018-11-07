@@ -5,11 +5,5 @@ $(document).ready(function() {
   shoppingList.render();
 });
 
-api.getItems(function(data) {
-  console.log(data);
-});
 
-$.getJSON('https://thinkful-list-api.herokuapp.com/ei-student/items', (response) => {
-  console.log('api response:', response);
-});
 store.items.push(Item.create('apples'));
