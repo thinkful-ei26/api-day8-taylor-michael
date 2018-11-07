@@ -65,11 +65,15 @@ const shoppingList = (function(){
     $('#js-shopping-list-form').submit(function (event) {
       event.preventDefault();
       const newItemName = $('.js-shopping-list-entry').val();
+      api.createItems(newItemName, (newItem) =>{
+        store.addItem(newItem); 
+        render(); 
+      });
       $('.js-shopping-list-entry').val('');
-      store.addItem(newItemName);
+      
       render();
-    });
-  }
+    }
+    )};
   
   function getItemIdFromElement(item) {
     return $(item)
@@ -102,7 +106,11 @@ const shoppingList = (function(){
       event.preventDefault();
       const id = getItemIdFromElement(event.currentTarget);
       const itemName = $(event.currentTarget).find('.shopping-item').val();
-      store.findAndUpdateName(id, itemName);
+      api.updateItem(id,{"name": itemName}, ()=>{
+        store.findAndUpdate(id,{"name": itemName});
+        render(); 
+      });
+      store.findAndUpdate(id, itemName);
       store.setItemIsEditing(id, false);
       render();
     });
