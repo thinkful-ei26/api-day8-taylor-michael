@@ -14,7 +14,10 @@ const store = (function(){
 
 
   const findAndDelete = function(id) {
-    this.items = this.items.filter(item => item.id !== id);
+    
+    const itemIndex = this.items.findIndex(element => element.id === id);
+    items.splice(itemIndex,1);
+
   };
 
   const findAndUpdate = function(itemId, newData) {
